@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Function to load all command files
 function loadCommands(client) {
     const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 
@@ -12,7 +11,6 @@ function loadCommands(client) {
     }
 }
 
-// Command handler function
 async function handleCommand(message, client) {
     let command = '';
     let arg = '';
@@ -37,7 +35,6 @@ async function handleCommand(message, client) {
 
     try {
         if (commandFile.requiresArgs && arg.length === 0) {
-            // Command requires arguments but none were provided
             message.reply('This command requires arguments. Please provide the necessary arguments.');
         } 
         if (!commandFile.requiresArgs) {
