@@ -35,9 +35,9 @@ async function handleTmdb(message, arg) {
                     console.log('TMDB API Response:', data);
                     message.reply(`/adduhtml Info,
                     <div style="float:left; margin-right:10px; border: 2px solid black; padding: 10px;">
-                        <img src="${imgUrl}" width="150" height="175">
+                        <img src="${imgUrl}" width="170" height="195">
                     </div> 
-                        <div style="border: 2px solid black; padding: 10px; height: 178px;">
+                        <div style="border: 5px solid black; border-radius: 30px; padding: 10px; height: 185px;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
@@ -79,10 +79,10 @@ async function handleTmdb(message, arg) {
                         console.log('TMDB API Response:', data);
 
                         message.reply(`/adduhtml Info,
-                        <div style="float:left; margin-right:10px; border: 2px solid black; padding: 10px;">
-                        <img src="${imgUrl}" width="150" height="175">
+                        <div style="float:left; margin-right:10px; padding: 10px;">
+                        <img src="${imgUrl}" width="170" height="195">
                     </div> 
-                        <div style="border: 2px solid black; padding: 10px; height: 178px;">
+                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 185px;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
@@ -100,7 +100,9 @@ async function handleTmdb(message, arg) {
                 }
             }
     }
+        
             fetchDetails(title, type);
+        
 }
 
 
