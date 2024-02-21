@@ -28,16 +28,15 @@ async function handleTmdb(message, arg) {
                     const imgUrl = data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : 'N/A';
                     const rating = data.vote_average;
                     const votes = data.vote_count;
-                    const seasons = 'N/A';
                     const runtime = data.runtime + ' minutes';
                     var genresArray = data.genres.map(genre => genre.name);
 
                     console.log('TMDB API Response:', data);
                     message.reply(`/adduhtml Info,
-                    <div style="float:left; margin-right:10px; border: 2px solid black; padding: 10px;">
-                        <img src="${imgUrl}" width="170" height="195">
+                    <div style="float:left; margin-right:10px;">
+                        <img src="${imgUrl}" width="175" height="200">
                     </div> 
-                        <div style="border: 5px solid black; border-radius: 30px; padding: 10px; height: 185px;">
+                        <div style="border: 5px solid gray; border-radius: 30px; padding: 10px; height: 195px;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
@@ -71,7 +70,6 @@ async function handleTmdb(message, arg) {
                         const rating = data.vote_average;
                         const votes = data.vote_count;
                         const seasons = data.number_of_seasons;
-                        const runtime = 'N/A';
                         var genresArray = data.genres.map(genre => genre.name);
                         
                        // console.log("Genres:", genresArray);
@@ -80,9 +78,9 @@ async function handleTmdb(message, arg) {
 
                         message.reply(`/adduhtml Info,
                         <div style="float:left; margin-right:10px; padding: 10px;">
-                        <img src="${imgUrl}" width="170" height="195">
+                        <img src="${imgUrl}" width="175" height="200">
                     </div> 
-                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 185px;">
+                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
