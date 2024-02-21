@@ -1,7 +1,7 @@
 const { Client } = require('ps-client');
 const { loadCommands, handleCommand } = require('./commandHandler');
 
-const Bot = new Client({ username: 'mdms bot', password: '', debug: true, avatar: 'hayley', rooms: ['the 501st', 'pets&animals', 'tvfilms', 'thestudio', 'dreamyard'] });
+const Bot = new Client({ username: 'mdms bot', password: '', debug: true, avatar: 'hayley', rooms: ['[redacted]', 'pets&animals', 'tvfilms', 'thestudio', 'dreamyard'] });
 
 Bot.commands = new Map();
 loadCommands(Bot);
@@ -23,7 +23,7 @@ Bot.on('message', message => {
     {
 
         console.log(message.target);
-        if(message.target.roomid === ('the501st'))
+        if(message.target.roomid === ('[redacted]'))
         {
             handleCommand(message, Bot);
         }
