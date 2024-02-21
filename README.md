@@ -1,4 +1,4 @@
-My latest Node.js bot for Pokemon-Showdown.com
+My latest Node.js bot for Pokemon-Showdown.com (Madeline on PS / mdm on smogon)
 
 Hosted via a racknerd VPS.
 
