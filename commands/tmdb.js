@@ -34,14 +34,17 @@ async function handleTmdb(message, arg) {
 
                     console.log('TMDB API Response:', data);
                     message.reply(`/adduhtml Info,
-                    <div style="float:left; margin-right:10px;">
-                    <img src="${imgUrl}" width="150" height="175"></div> 
-                    <strong>Overview:</strong><br>${overview}<br>
-                    <strong>Genres:</strong> ${genresArray.join(', ')}<br>
-                    <strong>Released:</strong> ${release}<br>
-                    <strong>Runtime:</strong> ${runtime}<br>
-                    <strong>Rating:</strong> ${rating}<br>
-                    <strong>Number of votes::</strong> ${votes}`);
+                    <div style="float:left; margin-right:10px; border: 2px solid black; padding: 10px;">
+                        <img src="${imgUrl}" width="150" height="175">
+                    </div> 
+                        <div style="border: 2px solid black; padding: 10px; height: 178px;">
+                        <strong>Overview:</strong><br>${overview}<br>
+                        <strong>Genres:</strong> ${genresArray.join(', ')}<br>
+                        <strong>Released:</strong> ${release}<br>
+                        <strong>Runtime:</strong> ${runtime}<br>
+                        <strong>Rating:</strong> ${rating}<br>
+                        <strong>Number of votes:</strong> ${votes}
+                    </div>`);
                         return;
                 } else {
                     return 'No results found for the provided title.';
@@ -76,14 +79,17 @@ async function handleTmdb(message, arg) {
                         console.log('TMDB API Response:', data);
 
                         message.reply(`/adduhtml Info,
-                    <div style="float:left; margin-right:10px;">
-                    <img src="${imgUrl}" width="150" height="175"></div> 
-                    <strong>Overview:</strong><br>${overview}<br>
-                    <strong>Genres:</strong> ${genresArray.join(', ')}<br>
-                    <strong>Released:</strong> ${release}<br>
-                    <strong>Seasons:</strong> ${seasons}<br>
-                    <strong>Rating:</strong> ${rating}<br>
-                    <strong>Number of votes:</strong> ${votes}`);
+                        <div style="float:left; margin-right:10px; border: 2px solid black; padding: 10px;">
+                        <img src="${imgUrl}" width="150" height="175">
+                    </div> 
+                        <div style="border: 2px solid black; padding: 10px; height: 178px;">
+                        <strong>Overview:</strong><br>${overview}<br>
+                        <strong>Genres:</strong> ${genresArray.join(', ')}<br>
+                        <strong>Released:</strong> ${release}<br>
+                        <strong>Seasons:</strong> ${seasons}<br>
+                        <strong>Rating:</strong> ${rating}<br>
+                        <strong>Number of votes:</strong> ${votes}
+                    </div>`);
                         return;
                     } else {
                         return 'No results found for the provided title.';
@@ -94,13 +100,7 @@ async function handleTmdb(message, arg) {
                 }
             }
     }
-        async function handleCommand() {
-            console.log('Type:', type);
-            console.log('Title:', title);
-            fetchDetails(title, type);    
-        }
-        
-        handleCommand(message, arg);
+            fetchDetails(title, type);
 }
 
 
