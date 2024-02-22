@@ -15,7 +15,7 @@ async function handleTmdb(message, arg) {
   console.log("Year:", year);
 
   async function fetchDetails(title, type) {
-    const apiKey = "";
+    const apiKey = "1b7797bda0882359202e6bc898084d1e";
     const baseUrl = "https://api.themoviedb.org/3";
     console.log("Type:", type);
     console.log("Title:", title);
@@ -53,8 +53,7 @@ async function handleTmdb(message, arg) {
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "N/A";
-          const {overview, vote_average: rating, vote_count: votes} = data;
-          const runtime = data.runtime + " minutes";
+          const {overview, vote_average: rating, vote_count: votes, runtime} = data;
           var genresArray = data.genres.map((genre) => genre.name);
 
           console.log("TMDB API Response:", data);
@@ -66,7 +65,7 @@ async function handleTmdb(message, arg) {
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(", ")}<br>
                         <strong>Released:</strong> ${release}<br>
-                        <strong>Runtime:</strong> ${runtime}<br>
+                        <strong>Runtime:</strong> ${runtime} minutes<br>
                         <strong>Rating:</strong> ${rating}<br>
                         <strong>Number of votes:</strong> ${votes}
                     </div>`);
@@ -110,7 +109,7 @@ async function handleTmdb(message, arg) {
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "N/A";
-          const {overview, vote_average: rating, vote_count: votes, seasons: number_of_seasons} = data;
+          const {overview, vote_average: rating, number_of_seasons: seasons, vote_count: votes} = data;
           var genresArray = data.genres.map((genre) => genre.name);
 
           // console.log("Genres:", genresArray);
