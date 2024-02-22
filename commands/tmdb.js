@@ -1,9 +1,19 @@
 const axios = require('axios');
 
 async function handleTmdb(message, arg) {
-    [type, title] = arg.split(/\s+(.+)/).filter(Boolean);
+    
+        let year;
+        const yearMatch = arg.match(/(\d{4})$/);
+    if (yearMatch) {
+        year = parseInt(yearMatch[0]);
+        arg = arg.replace(yearMatch[0], '').trim();
+    }
+        
+        [type, title] = arg.split(/\s+(.+)/).filter(Boolean);
+        
         console.log('Type:', type);
         console.log('Title:', title);
+        console.log('Year:', year);
 
         async function fetchDetails(title, type) {
             const apiKey = '';
@@ -16,10 +26,19 @@ async function handleTmdb(message, arg) {
             try {
                 const response = await axios.get(searchUrl);
                 var data = response.data;
-                console.log("no issues");
         
                 if (data.results && data.results.length > 0) {
-                    const movieId = data.results[0].id;
+                    let movieId;
+                        if (year) {
+                            const movieWithYear = data.results.find(movie => movie.release_date && new Date(movie.release_date).getFullYear() === year);
+                        if (movieWithYear) {
+                            movieId = movieWithYear.id;
+                        } else {
+                            return 'No results found for the provided title and year.';
+                            }
+                    } else {
+                    movieId = data.results[0].id;
+                }
 
                     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`);
                     data = await response.json();
@@ -33,10 +52,10 @@ async function handleTmdb(message, arg) {
 
                     console.log('TMDB API Response:', data);
                     message.reply(`/adduhtml Info,
-                    <div style="float:left; margin-right:10px;">
-                        <img src="${imgUrl}" width="175" height="200">
+                    <div style="float:left; margin-right:10px; overflow: scroll;">
+                        <img src="${imgUrl}" width="200" height="225">
                     </div> 
-                        <div style="border: 5px solid gray; border-radius: 30px; padding: 10px; height: 195px;">
+                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px; overflow: scroll;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
@@ -60,7 +79,17 @@ async function handleTmdb(message, arg) {
                     var data = response.data;
             
                     if (data.results && data.results.length > 0) {
-                        const showId = data.results[0].id;
+                            let showId;
+                                if (year) {
+                                    const showWithYear = data.results.find(show => show.first_air_date && new Date(show.first_air_date).getFullYear() === year);
+                                if (showWithYear) {
+                                    showId = showWithYear.id;
+                                } else {
+                                    return 'No results found for the provided title and year.';
+                                    }
+                            } else {
+                            showId = data.results[0].id;
+                        }
 
                         const response = await fetch(`https://api.themoviedb.org/3/tv/${showId}?api_key=${apiKey}&language=en-US`);
                         data = await response.json();
@@ -77,10 +106,10 @@ async function handleTmdb(message, arg) {
                         console.log('TMDB API Response:', data);
 
                         message.reply(`/adduhtml Info,
-                        <div style="float:left; margin-right:10px; padding: 10px;">
-                        <img src="${imgUrl}" width="175" height="200">
+                        <div style="float:left; margin-right:10px; overflow: scroll;">
+                        <img src="${imgUrl}" width="200" height="225">
                     </div> 
-                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px;">
+                        <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px; overflow: scroll;">
                         <strong>Overview:</strong><br>${overview}<br>
                         <strong>Genres:</strong> ${genresArray.join(', ')}<br>
                         <strong>Released:</strong> ${release}<br>
@@ -92,7 +121,7 @@ async function handleTmdb(message, arg) {
                     } else {
                         return 'No results found for the provided title.';
                     }
-                } catch (error) {
+            } catch (error) {
                     console.error('Error fetching data from TMDB:', error.message);
                     return 'Error fetching data from TMDB.';
                 }
