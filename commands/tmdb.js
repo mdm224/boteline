@@ -47,15 +47,13 @@ async function handleTmdb(message, arg) {
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`,
           );
           data = await response.json();
-          const overview = data.overview;
           const release = data.release_date
             ? new Date(data.release_date).getFullYear()
             : "N/A";
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "N/A";
-          const rating = data.vote_average;
-          const votes = data.vote_count;
+          const {overview, vote_average: rating, vote_count: votes} = data;
           const runtime = data.runtime + " minutes";
           var genresArray = data.genres.map((genre) => genre.name);
 
@@ -106,16 +104,13 @@ async function handleTmdb(message, arg) {
             `https://api.themoviedb.org/3/tv/${showId}?api_key=${apiKey}&language=en-US`,
           );
           data = await response.json();
-          const overview = data.overview;
           const release = data.first_air_date
             ? new Date(data.first_air_date).getFullYear()
             : "N/A";
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "N/A";
-          const rating = data.vote_average;
-          const votes = data.vote_count;
-          const seasons = data.number_of_seasons;
+          const {overview, vote_average: rating, vote_count: votes, seasons: number_of_seasons} = data;
           var genresArray = data.genres.map((genre) => genre.name);
 
           // console.log("Genres:", genresArray);
