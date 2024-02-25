@@ -1,7 +1,7 @@
 const { Client } = require('ps-client');
 const { loadCommands, handleCommand } = require('./commandHandler');
 
-const Bot = new Client({ username: 'mdms bot', password: '', debug: true, avatar: 'hayley', rooms: ['[redacted]', 'pets&animals', 'tvfilms', 'thestudio', 'dreamyard'] });
+const Bot = new Client({ username: 'mdms bot', password: '', debug: true, avatar: 'hayley', rooms: ['[redacted]', 'pets&animals', 'tvfilms', 'thestudio', '[redacted]'] });
 
 Bot.commands = new Map();
 loadCommands(Bot);
