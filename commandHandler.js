@@ -30,7 +30,7 @@ async function handleCommand(message, client) {
     console.log(arg);
 
     if (command === 'randanimal') {
-        const animals = ['capy', 'axolotl', 'owl', 'ferret', 'leopard', 'raccoon', 'panda', 'turtle', 'fish', 'tt', 'skip', 'graycie', 'deli'];
+        const animals = ['capy', 'axolotl', 'owl', 'ferret', 'leopard', 'raccoon', 'panda', 'turtle', 'fish', 'tt', 'skip', 'graycie', 'deli', 'bird', 'redpanda'];
         const randomIndex = Math.floor(Math.random() * animals.length);
         const randomAnimal = animals[randomIndex];
         const command = `rand${randomAnimal}`;
