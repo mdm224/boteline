@@ -48,8 +48,6 @@ async function handleTmdb(message, arg) {
           );
           data = await response.json();
           const release = data.release_date
-            ? new Date(data.release_date).getFullYear()
-            : "N/A";
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "N/A";
