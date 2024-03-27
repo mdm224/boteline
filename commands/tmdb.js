@@ -1,4 +1,5 @@
 const axios = require("axios");
+const getID = require("./getID.js");
 
 async function handleTmdb(message, arg) {
   let year;
@@ -15,7 +16,7 @@ async function handleTmdb(message, arg) {
   console.log("Year:", year);
 
   async function fetchDetails(title, type) {
-    const apiKey = "1b7797bda0882359202e6bc898084d1e";
+    const apiKey = "";
     const baseUrl = "https://api.themoviedb.org/3";
     console.log("Type:", type);
     console.log("Title:", title);
@@ -28,25 +29,19 @@ async function handleTmdb(message, arg) {
 
         if (data.results && data.results.length > 0) {
           let movieId;
-          if (year) {
-            const movieWithYear = data.results.find(
-              (movie) =>
-                movie.release_date &&
-                new Date(movie.release_date).getFullYear() === year,
-            );
-            if (movieWithYear) {
-              movieId = movieWithYear.id;
-            } else {
-              return "No results found for the provided title and year.";
-            }
-          } else {
-            movieId = data.results[0].id;
-          }
-
+          movieId = getID.movieId(movieId, year, data);
+          console.log(movieId);
           const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`,
           );
+          // const response2 = await fetch(
+          //   `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${apiKey}`
+
+          // );
+          
           data = await response.json();
+         // data2 = await response2.json();
+        //  console.log(data2.results.US.rent.map(provider => provider.provider_name));
           const release = data.release_date
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
@@ -82,20 +77,9 @@ async function handleTmdb(message, arg) {
 
         if (data.results && data.results.length > 0) {
           let showId;
-          if (year) {
-            const showWithYear = data.results.find(
-              (show) =>
-                show.first_air_date &&
-                new Date(show.first_air_date).getFullYear() === year,
-            );
-            if (showWithYear) {
-              showId = showWithYear.id;
-            } else {
-              return "No results found for the provided title and year.";
-            }
-          } else {
-            showId = data.results[0].id;
-          }
+          showId = getID.showId(showId, year, data);
+          console.log(showId);
+
 
           const response = await fetch(
             `https://api.themoviedb.org/3/tv/${showId}?api_key=${apiKey}&language=en-US`,
@@ -139,6 +123,7 @@ async function handleTmdb(message, arg) {
 
   fetchDetails(title, type);
 }
+
 
 handleTmdb.requiresArgs = true;
 module.exports = handleTmdb;
