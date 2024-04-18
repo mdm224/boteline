@@ -2,7 +2,7 @@ const axios = require("axios");
 const getID = require("./getID.js");
 
 async function handleWatch(message, arg) {
-  let year, region;
+let year, region;
 let argParts = arg.split(',');
 
 let firstPart = argParts[0].trim();
@@ -12,14 +12,20 @@ let type = firstPart.substring(0, spaceIndex).trim();
 let title = firstPart.substring(spaceIndex + 1).trim();
 
 
-title = title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 
+
+
+const yearMatch = arg.match(/(\d{4})/);
+  title = title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  if (yearMatch) {
+    year = parseInt(yearMatch[0]);
+    arg = arg.replace(yearMatch[0], "").trim();
+    title = title.replace(yearMatch[0], "").trim();
+  }
+
+  
 if (argParts.length > 1) {
-  year = parseInt(argParts[1].trim());
-}
-
-if (argParts.length > 2) {
-  region = argParts[2].trim().toUpperCase();
+  region = argParts[1].trim().toUpperCase();
 }
 else {
   region = "US";
@@ -36,10 +42,11 @@ console.log("Region:", region);
     const baseUrl = "https://api.themoviedb.org/3";
     console.log("Type:", type);
     console.log("Title:", title);
-    const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
 
-    if (type === "movie") {
+    if (type === "movie" || type === "film") {
       try {
+        type = "movie";
+        const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
         const response = await axios.get(searchUrl);
         var data = response.data;
 
@@ -83,8 +90,10 @@ console.log("Region:", region);
         console.error(title + "Error fetching data from TMDB:", error.message);
         return "Error fetching data from TMDB.";
       }
-    } else {
+    } else if (type === "tv" || type === "show") {
       try {
+        type = "tv";
+        const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
         const response = await axios.get(searchUrl);
         var data = response.data;
 
