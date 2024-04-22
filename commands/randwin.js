@@ -1,6 +1,4 @@
 const tmdb = require("./tmdb.js");
-async function handleRandwin(message) {
-
 const titlesWon = [
     { win: 'Heathers', type: 'movie' },
     { win: 'Pitch Perfect: Bumper in Berlin', type: 'tv' },
@@ -63,7 +61,6 @@ const titlesWon = [
     { win: 'Evil Dead', type: 'movie' },
     { win: 'Dungeons & Dragons', type: 'movie' },
     { win: 'TRON: Legacy', type: 'movie' },
-    { win: 'Invincible', type: 'tv' },
     { win: 'Alien', type: 'movie' },
     { win: 'Total Drama Presents: The Ridonculous Race', type: 'tv' },
     { win: 'The Fast and the Furious', type: 'movie' },
@@ -219,7 +216,7 @@ const titlesWon = [
     { win: 'A Night to Remember', type: 'movie' },
     { win: 'The Three Musketeers: DArtagnan', type: 'movie' },
     { win: 'Regular Show', type: 'tv' },
-    { win: 'Room Service', type: 'movie' },
+    { win: 'Room Service 1938', type: 'movie' },
     { win: 'Stickin Around', type: 'tv' },
     { win: 'Gen V', type: 'tv' },
     { win: 'Star Wars: Episode III - Revenge of the Sith', type: 'movie' },
@@ -367,7 +364,7 @@ const titlesWon = [
     { win: 'Curious George: A Very Monkey Christmas', type: 'movie' },
     { win: 'Moshi Monsters: The Movie', type: 'movie' },
     { win: 'Inspector Gadget', type: 'tv' },
-    { win: 'Murder, She Wrote', type: 'tv' },
+    { win: 'Murder She Wrote', type: 'tv' },
     { win: 'Your Name.', type: 'movie' },
     { win: 'The Last Airbender', type: 'movie' },
     { win: 'Spirited', type: 'movie' },
@@ -390,11 +387,11 @@ const titlesWon = [
     { win: 'The Shining', type: 'movie' },
     { win: 'The Florida Project', type: 'movie' },
     { win: 'Les Miserables', type: 'tv' },
-    { win: 'Punky Brewster', type: 'tv' },
+    { win: 'Punky Brewster 2021', type: 'tv' },
     { win: 'Ghosts', type: 'tv' },
     { win: 'The Hunger Games: The Ballad of Songbirds & Snakes', type: 'movie' },
     { win: 'Jake and the Never Land Pirates', type: 'tv' },
-    { win: 'The Tunnel to Summer, the Exit of Goodbyes', type: 'movie' },
+    { win: 'The Tunnel to Summer the Exit of Goodbyes', type: 'movie' },
     { win: 'Blue Eye Samurai', type: 'tv' },
     { win: 'Delicatessen', type: 'movie' },
     { win: 'Deliverance', type: 'movie' },
@@ -433,7 +430,7 @@ const titlesWon = [
     { win: 'Dinosaurs', type: 'tv' },
     { win: 'Superstore', type: 'tv' },
     { win: 'Cousin Skeeter', type: 'tv' },
-    { win: 'Salaar: Cease Fire - Part 1', type: 'movie' },
+    { win: 'Salaar: Part 1 - Ceasefire', type: 'movie' },
     { win: 'Squid Game', type: 'tv' },
     { win: 'Detention', type: 'movie' },
     { win: 'Jawbreaker', type: 'movie' },
@@ -441,7 +438,7 @@ const titlesWon = [
     { win: 'Avatar: The Last Airbender 2024', type: 'tv' },
     { win: 'Shogun', type: 'tv' },
     { win: 'Navalny', type: 'movie' },
-    { win: 'Love, Death & Robots', type: 'tv' },
+    { win: 'Love Death & Robots', type: 'tv' },
     { win: 'Jersey Shore', type: 'tv' },
     { win: 'The Green Mile', type: 'movie' },
     { win: 'Blood: The Last Vampire', type: 'movie' },
@@ -504,7 +501,7 @@ const titlesWon = [
     { win: 'Friends', type: 'tv' },
     { win: 'The Place Beyond the Pines', type: 'movie' },
     { win: 'Law & Order: Special Victims Unit', type: 'tv' },
-    { win: 'Flee', type: 'movie' },
+    { win: 'Flee 2021', type: 'movie' },
     { win: 'Westworld', type: 'tv' },
     { win: 'Bob Burgers', type: 'tv' },
     { win: 'The Holy Mountain', type: 'movie' },
@@ -545,7 +542,6 @@ const titlesWon = [
     { win: 'Spartacus', type: 'tv' },
     { win: 'Spider-Man: Into the Spider-Verse', type: 'movie' },
     { win: 'Firefly', type: 'tv' },
-    { win: 'Invincible', type: 'tv' },
     { win: 'Turning Red', type: 'movie' },
     { win: 'Avatar: The Last Airbender 2005', type: 'tv' },
     { win: 'The Legend of Korra', type: 'tv' },
@@ -685,7 +681,6 @@ const titlesWon = [
     { win: 'Animal Crackers', type: 'movie' },
     { win: 'Only Murders in the Building', type: 'tv' },
     { win: 'Palm Springs', type: 'movie' },
-    { win: 'Possession', type: 'movie' },
     { win: 'Blue Velvet', type: 'movie' },
     { win: 'Minions', type: 'movie' },
     { win: 'Despicable Me', type: 'movie' },
@@ -728,7 +723,7 @@ const titlesWon = [
     { win: "Kitchen Nightmares", type: "tv" },
     { win: "Sucker Punch", type: "movie" },
     { win: "Dodgeball: A True Underdog Story", type: "movie" },
-    { win: "Casper the Friendly Ghost", type: "tv" },
+    { win: "The Spooktacular New Adventures of Casper 1996", type: "tv" },
     { win: "Chinatown", type: "movie" },
     { win: "Network", type: "movie" },
     { win: "Wunschpunsch", type: "tv" },
@@ -736,7 +731,7 @@ const titlesWon = [
     { win: "Killer Bean Forever", type: "movie" },
     { win: "Adventure Time", type: "tv" },
     { win: "Sky High", type: "movie" },
-    { win: "Murder, She Wrote", type: "tv" },
+    { win: "Murder She Wrote", type: "tv" },
     { win: "Dragnet", type: "tv" },
     { win: "Mighty Magiswords", type: "tv" },
     { win: "Encanto", type: "movie" },
@@ -814,9 +809,26 @@ const titlesWon = [
     { win: "Kid vs. Kat", type: "tv" },
     { win: "Fairly Oddparents", type: "tv" },
     { win: "The Marvels", type: "movie"},
-    { win: "Gen V", type: "tv"}
+    { win: "Gen V", type: "tv"},
+    { win: "Godfather of Harlem 2019", type: "tv"},
+    { win: "Bones and All 2022", type: "movie"},
+    { win: "Wheel of Fortune", type: "show"},
+    { win: "Monsters Inc 2001", type: "movie"},
+    { win: "Maid 2021", type: "tv"},
+    { win: "Ford v Ferrari 2019", type: "movie"},
+    { win: "One Piece 2023", type: "tv"},
+    { win: "Trainspotting 1996", type: "movie"},
+    { win: "Abbott Elementary 2021", type: "tv"},
+    { win: "12 Monkeys 1995", type: "movie"},
+    { win: "Invincible 2021", type: "tv"},
+    { win: "Road House 2024", type: "movie"},
+    { win: "Black Sails 2014", type: "tv"},
+    { win: "The Wailing 2016", type: "movie"},
+    { win: "Poor Things 2023", type: "movie"},
+    { win: "X-Men 97 2024", type: "tv"},
+    { win: "The Beekeeper 2024", type: "movie"},
+    { win: "Monk 2002", type: "tv"}
 ];
-
 
 const uniqueTitlesWon = titlesWon.filter((title, index, self) =>
     index === self.findIndex((t) => (
@@ -824,7 +836,10 @@ const uniqueTitlesWon = titlesWon.filter((title, index, self) =>
     ))
 );
 
+async function handleRandwin(message) {
+
 const win = Math.floor(Math.random() * uniqueTitlesWon.length);
+console.log(win);
 const title = uniqueTitlesWon[win].win;
 const type = uniqueTitlesWon[win].type;
 const arg = type + ' ' + title;
@@ -832,5 +847,45 @@ tmdb(message, arg);
 
 }
 
+function randSotd(message)
+{
+    let sotdwins = [];
+    for (let i = 0; uniqueTitlesWon.length > i; i++)
+        {
+            if (uniqueTitlesWon[i].type === 'tv')
+            {
+                sotdwins.push({ win: uniqueTitlesWon[i].win, type: uniqueTitlesWon[i].type });
+            }
+        }
+
+    const win = Math.floor(Math.random() * sotdwins.length);
+    console.log(win);
+    const title = sotdwins[win].win;
+    const type = sotdwins[win].type;
+    const arg = type + ' ' + title;
+    tmdb(message, arg);
+}
+
+function randFotd(message)
+{
+    let fotdwins = [];
+    for (let i = 0; uniqueTitlesWon.length > i; i++)
+        {
+            if (uniqueTitlesWon[i].type === 'movie')
+            {
+                fotdwins.push({ win: uniqueTitlesWon[i].win, type: uniqueTitlesWon[i].type });
+            }
+        }
+
+    const win = Math.floor(Math.random() * fotdwins.length);
+    console.log(win);
+    const title = fotdwins[win].win;
+    const type = fotdwins[win].type;
+    const arg = type + ' ' + title;
+    tmdb(message, arg);
+}
+
 handleRandwin.requiresArgs = false;
 module.exports = handleRandwin;
+module.exports.randSotd = randSotd;
+module.exports.randFotd = randFotd;
