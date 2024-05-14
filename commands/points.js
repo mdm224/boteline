@@ -2,7 +2,7 @@ async function handlePoints(message, arg) {
     if (!handlePoints.users) {
         handlePoints.users = [];
     }
-
+    
     if (arg === "print") {
         const replyMessage = handlePoints.users.map(user => `${user.name}: ${user.points}`).join('<br>');
         console.log(handlePoints.users);
@@ -21,8 +21,8 @@ async function handlePoints(message, arg) {
         message.reply("Points cleared!");
         return;
     }
-
-
+    arg = " " + arg;
+    arg.split(",").forEach(arg => {
     if (arg.includes(':')) {
         const [user, pointsStr] = arg.split(':');
         const points = parseInt(pointsStr);
@@ -37,16 +37,19 @@ async function handlePoints(message, arg) {
         message.reply('Points updated!');
         return;
     }
-
-    const userIndex = handlePoints.users.findIndex(user => user.name === arg);
-    if (userIndex !== -1) {
-        handlePoints.users[userIndex].points += 1;
-    } else {
-        handlePoints.users.push({ name: arg, points: 1 });
-    }
+    else{
+        const userIndex = handlePoints.users.findIndex(user => user.name === arg);
+        if (userIndex !== -1) {
+            handlePoints.users[userIndex].points += 1;
+        } else {
+            handlePoints.users.push({ name: arg, points: 1 });
+        }
+}
+});
 
     message.reply('Points updated!');
 }
+
 
 handlePoints.requiresArgs = true;
 module.exports = handlePoints;

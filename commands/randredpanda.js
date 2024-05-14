@@ -1,5 +1,5 @@
 async function handleRandredpanda(message) {
-    const redPands = 520;
+    const redPands = 275;
     const Response = Math.floor(Math.random() * redPands + 1);
             
 

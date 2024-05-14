@@ -20,13 +20,16 @@ async function handleTmdb(message, arg) {
     const baseUrl = "https://api.themoviedb.org/3";
     console.log("Type:", type);
     console.log("Title:", title);
-    const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
+    
 
-    if (type === "movie") {
+    if (type === "movie" || type === "film") {
       try {
+        type = "movie";
+        const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
+
         const response = await axios.get(searchUrl);
         var data = response.data;
-
+        
         if (data.results && data.results.length > 0) {
           let movieId;
           movieId = getID.movieId(movieId, year, data);
@@ -34,25 +37,26 @@ async function handleTmdb(message, arg) {
           const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`,
           );
-          // const response2 = await fetch(
-          //   `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${apiKey}`
-
-          // );
           
           data = await response.json();
-         // data2 = await response2.json();
-        //  console.log(data2.results.US.rent.map(provider => provider.provider_name));
+      
           const release = data.release_date
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-            : "N/A";
-          const {overview, vote_average: rating, vote_count: votes, runtime} = data;
+            : "https://banner2.cleanpng.com/20180422/pqw/kisspng-photographic-film-movie-icons-cinema-clapperboard-5adc6cb00e9939.5609916715243951840598.jpg";
+            const {overview = "N/A", vote_average: rating = "N/A", vote_count: votes = "N/A", runtime = "N/A"} = data;
           var genresArray = data.genres.map((genre) => genre.name);
 
-          console.log("TMDB API Response:", data);
-          message.reply(`/adduhtml Info,
+          console.log(`genre: ${genresArray.join(", ")}`);
+          console.log(`overview: ${overview}`);
+          console.log(`rating: ${rating}`);
+          console.log(`votes: ${votes}`);
+          console.log(`imgUrl: ${imgUrl}`);
+          console.log(`release: ${release}`);
+          
+          message.reply(`/adduhtml ${title},
                     <div style="float:left; margin-right:10px; overflow: scroll;">
-                        <img src="${imgUrl}" width="200" height="225">
+                        <img src="${imgUrl}" width="175" height="225">
                     </div> 
                         <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px; overflow: scroll;">
                         <strong>Overview:</strong><br>${overview}<br>
@@ -64,16 +68,20 @@ async function handleTmdb(message, arg) {
                     </div>`);
           return;
         } else {
-          return "No results found for the provided title.";
+          message.reply (`${title} was not found on tmdb`);
+          return;
         }
       } catch (error) {
-        console.error("Error fetching data from TMDB:", error.message);
-        return "Error fetching data from TMDB.";
+        console.error(title + "Error fetching data from TMDB:", error.message);
+        return message.reply("Error fetching data from TMDB.");
       }
-    } else {
+    } else if (type === "tv" || type === "show") {
       try {
+        type = "tv";
+        const searchUrl = `${baseUrl}/search/${type}?api_key=${apiKey}&query=${encodeURIComponent(title)}`;
         const response = await axios.get(searchUrl);
         var data = response.data;
+        
 
         if (data.results && data.results.length > 0) {
           let showId;
@@ -90,17 +98,21 @@ async function handleTmdb(message, arg) {
             : "N/A";
           const imgUrl = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-            : "N/A";
-          const {overview, vote_average: rating, number_of_seasons: seasons, vote_count: votes} = data;
-          var genresArray = data.genres.map((genre) => genre.name);
+            : "https://banner2.cleanpng.com/20180422/pqw/kisspng-photographic-film-movie-icons-cinema-clapperboard-5adc6cb00e9939.5609916715243951840598.jpg";
+          const {overview = "N/A", vote_average: rating = "N/A", number_of_seasons: seasons = "N/A", vote_count: votes = "N/A"} = data;
+          var genresArray = data.genres ? data.genres.map((genre) => genre.name) : "N/A";
 
-          // console.log("Genres:", genresArray);
-
-          console.log("TMDB API Response:", data);
-
-          message.reply(`/adduhtml Info,
+          //  console.log(data);
+            console.log(`genre: ${genresArray.join(", ")}`);
+            console.log(`overview: ${overview}`);
+            console.log(`rating: ${rating}`);
+            console.log(`seasons: ${seasons}`);
+            console.log(`votes: ${votes}`);
+            console.log(`imgUrl: ${imgUrl}`);
+            console.log(`release: ${release}`);
+          message.reply(`/adduhtml ${title},
                         <div style="float:left; margin-right:10px; overflow: scroll;">
-                        <img src="${imgUrl}" width="200" height="225">
+                        <img src="${imgUrl}" width="175" height="225">
                     </div> 
                         <div style="border: 5px solid gray; border-radius: 10px; padding: 10px; height: 195px; overflow: scroll;">
                         <strong>Overview:</strong><br>${overview}<br>
@@ -112,11 +124,12 @@ async function handleTmdb(message, arg) {
                     </div>`);
           return;
         } else {
-          return "No results found for the provided title.";
+          message.reply (`${title} was not found on tmdb`);
+          return;
         }
       } catch (error) {
-        console.error("Error fetching data from TMDB:", error.message);
-        return "Error fetching data from TMDB.";
+        console.error(title + "Error fetching data from TMDB:", error.message);
+        return message.reply("Error fetching data from TMDB. Title: " + title);
       }
     }
   }

@@ -1,5 +1,5 @@
 async function handleRandskip(message) {
-        const skips = 61;
+        const skips = 70;
 
         const Response = Math.floor(Math.random() * skips + 1);
             

@@ -1,5 +1,5 @@
 async function handleRandleopard(message) {
-    const leopards = 171;
+    const leopards = 170;
     const Response = Math.floor(Math.random() * leopards + 1);
     console.log('test');    
 

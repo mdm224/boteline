@@ -14,14 +14,14 @@ let title = firstPart.substring(spaceIndex + 1).trim();
 
 
 
-
+title = title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 const yearMatch = arg.match(/(\d{4})/);
-  title = title.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
   if (yearMatch) {
     year = parseInt(yearMatch[0]);
     arg = arg.replace(yearMatch[0], "").trim();
     title = title.replace(yearMatch[0], "").trim();
   }
+  
 
   
 if (argParts.length > 1) {
@@ -38,7 +38,7 @@ console.log("Region:", region);
 
 
   async function fetchDetails(title, type) {
-    const apiKey = "";
+    const apiKey = "1b7797bda0882359202e6bc898084d1e";
     const baseUrl = "https://api.themoviedb.org/3";
     console.log("Type:", type);
     console.log("Title:", title);

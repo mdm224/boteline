@@ -1,5 +1,5 @@
 async function handleRandtt(message) {
-    const dttCats = 74;
+    const dttCats = 132;
         const Response = Math.floor(Math.random() * dttCats + 1);
             
 

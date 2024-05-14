@@ -276,7 +276,7 @@ const titlesWon = [
     { win: 'Metalocalypse', type: 'tv' },
     { win: 'Abbott Elementary', type: 'tv' },
     { win: 'Totally Spies!', type: 'tv' },
-    { win: 'The Twlight Saga: Breaking Dawn - Part 1', type: 'movie' },
+    { win: 'The Twlight Saga: Breaking Dawn - Part 1 2011', type: 'movie' },
     { win: 'The Walking Dead', type: 'tv' },
     { win: 'Centurion', type: 'movie' },
     { win: 'Black Hawk Down', type: 'movie' },
@@ -531,7 +531,7 @@ const titlesWon = [
     { win: 'The Kings Speech', type: 'movie' },
     { win: 'Sling Blade', type: 'movie' },
     { win: 'Body Heat', type: 'movie' },
-    { win: 'Gambit', type: 'movie' },
+    { win: 'Gambit 1966', type: 'movie' },
     { win: 'Supernatural', type: 'tv' },
     { win: 'We Bare Bears', type: 'tv' },
     { win: 'Jaws', type: 'movie' },
@@ -620,7 +620,7 @@ const titlesWon = [
     { win: 'Hoodwinked', type: 'movie' },
     { win: 'Abbott Elementary', type: 'tv' },
     { win: 'Totally Spies!', type: 'tv' },
-    { win: 'The Twlight Saga Breaking Dawn - Part 1', type: 'movie' },
+    { win: 'The Twlight Saga Breaking Dawn - Part 1 2011', type: 'movie' },
     { win: 'The Walking Dead', type: 'tv' },
     { win: 'Centurion', type: 'movie' },
     { win: 'Black Hawk Down', type: 'movie' },
@@ -632,7 +632,7 @@ const titlesWon = [
     { win: 'Scary Movie 2', type: 'movie' },
     { win: 'Sing', type: 'movie' },
     { win: 'Malcolm in the Middle', type: 'tv' },
-    { win: 'Before Sunirse', type: 'movie' },
+    { win: 'Before Sunrise', type: 'movie' },
     { win: 'The Lovely Bones', type: 'movie' },
     { win: 'Video & Arcade Top 10', type: 'tv' },
     { win: 'Final Space', type: 'tv' },
@@ -827,7 +827,29 @@ const titlesWon = [
     { win: "Poor Things 2023", type: "movie"},
     { win: "X-Men 97 2024", type: "tv"},
     { win: "The Beekeeper 2024", type: "movie"},
-    { win: "Monk 2002", type: "tv"}
+    { win: "Monk 2002", type: "tv"},
+    { win: "Big Business 1988", type: "movie"},
+    { win: "The Flintstones 1960", type: "tv"},
+    { win: "Abigails Party 1977", type: "movie"},
+    { win: "Himalaya with Michael Palin", type: "tv"},
+    { win: "Columbus 2017", type: "movie"},
+    { win: "Seijuu Sentai Gingaman 1998", type: "tv"},
+    { win: "Abigail 2024", type: "movie"},
+    { win: "Baby Reindeer 2024", type: "tv"},
+    { win: "The Holdovers 2023", type: "movie"},
+    { win: "Fawlty Towers 1975", type: "tv"},
+    { win: "The Four Musketeers 1974", type: "movie"},
+    { win: "Pecola 2001", type: "tv"},
+    { win: "The Perks of Being a Wallflower 2012", type: "movie"},
+    { win: "Michael Palin's New Europe 2007", type: "tv"},
+    { win: "1408 2007", type: "movie"},
+    { win: "Justified 2010", type: "tv"},
+    { win: "Green Book 2018", type: "movie"},
+    { win: "Physical: 100 2023", type: "tv"},
+    { win: "Monkey Man 2024", type: "movie"},
+    { win: "Spider-Man 1994", type: "tv"},
+    { win: "Elysium 2013", type: "movie"},
+    { win: "Criminal Minds 2005", type: "tv"}
 ];
 
 const uniqueTitlesWon = titlesWon.filter((title, index, self) =>
@@ -849,6 +871,7 @@ tmdb(message, arg);
 
 function randSotd(message)
 {
+
     let sotdwins = [];
     for (let i = 0; uniqueTitlesWon.length > i; i++)
         {
@@ -864,10 +887,11 @@ function randSotd(message)
     const type = sotdwins[win].type;
     const arg = type + ' ' + title;
     tmdb(message, arg);
-}
+    }
 
 function randFotd(message)
 {
+    
     let fotdwins = [];
     for (let i = 0; uniqueTitlesWon.length > i; i++)
         {
@@ -883,7 +907,7 @@ function randFotd(message)
     const type = fotdwins[win].type;
     const arg = type + ' ' + title;
     tmdb(message, arg);
-}
+    }
 
 handleRandwin.requiresArgs = false;
 module.exports = handleRandwin;
